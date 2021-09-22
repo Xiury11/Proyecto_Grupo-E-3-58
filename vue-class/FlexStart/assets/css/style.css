@@ -172,7 +172,7 @@ section {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #012970;
+  color: #ecab0f;
   font-family: "Nunito", sans-serif;
   margin-top: 3px;
 }
@@ -394,13 +394,13 @@ section {
 }
 .hero .btn-get-started {
   margin-top: 30px;
-  line-height: 0;
+  line-height: 0; 
   padding: 15px 40px;
   border-radius: 4px;
   transition: 0.5s;
-  color: #fff;
-  background: #4154f1;
-  box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
+  color: rgb(248, 245, 245);
+  background: #d09306;
+  box-shadow: 0px 5px 30px rgba(233, 235, 113, 0.4);
 }
 .hero .btn-get-started span {
   font-family: "Nunito", sans-serif;
@@ -416,6 +416,7 @@ section {
 .hero .btn-get-started:hover i {
   transform: translateX(5px);
 }
+
 .hero .hero-img {
   text-align: right;
 }
@@ -480,6 +481,7 @@ section {
 .about .btn-read-more {
   line-height: 0;
   padding: 15px 40px;
+  
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
@@ -491,6 +493,8 @@ section {
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .about .btn-read-more i {
   margin-left: 5px;
@@ -501,6 +505,16 @@ section {
   transform: translateX(5px);
 }
 
+.about .php-email-form input {
+  border-radius: 50px;
+  box-shadow: none;
+  font-size: 14px;
+  border: 0;
+  padding: 0px 15px 2px 20px;
+  width: 250px;
+  height: 40px;
+  margin: 0 8px;
+}
 /*--------------------------------------------------------------
 # Values
 --------------------------------------------------------------*/
