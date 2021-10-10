@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = require('./user');
+
 
 const ingresoSchema = new Schema({
-    //id_user: Number,
+    
     valor: String,
     descripcion: String,
-    clasificacion: {type: String,enum:["salario","arriendo","otro"]}
+    clasificacion: {type: String,enum:["salario","arriendo","otro"]},
+    
 })
 
 
