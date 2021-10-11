@@ -16,9 +16,9 @@
         
           <li class="dropdown"><a href="#cuenta"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#sesiongastos">Gastos</a></li>
-              <li><a href="#sesioningresos">Ingresos</a></li>
-              <li><a href="#sesionmodificar">Modificar</a></li>
+              <li><a href="#gastos">Gastos</a></li>
+              <li><a href="#Ingresos">Ingresos</a></li>
+              <li><a href="#Modificar">Modificar</a></li>
               <li><a href="#cerrarsesion">Cerrar Sesión</a></li>
             </ul>
           </li>
@@ -178,7 +178,7 @@
 
 
 
-    <!-- ======= About Section ======= -->
+    <!-- ======= About Section  REGISTRO NUEVO USUARIO ======= -->
     <section id="about" class="hero d-flex align-items-center">
 
       <div class="container">
@@ -190,19 +190,19 @@
             
               <div class="container overflow-hidden">
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" v-model="form.name" required>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" required>
+                  <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" v-model="form.lastname" required>
                 </div>
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" v-model="form.email" required>
                 </div>
                 <div class="col-md-6 ">
-                  <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" required>
+                  <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" v-model="form.phone" required>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="pass" id="pass" placeholder="Contraseña" required>
+                  <input type="text" class="form-control" name="pass" id="password" placeholder="Contraseña" v-model="form.password" required>
                 </div>
                 <div class="col-md-6 ">
                   <input type="text" class="form-control" name="pass" id="pass" placeholder="Confirmar contraseña" required>
@@ -212,11 +212,11 @@
             
               
                 <div class="col-md-6 "> 
-                <a href="#crear" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <a href="" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
                   <span>Crear cuenta</span>
                   
                 </a>
-                <a href="#salir" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <a href="" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>Salir</span>
                 </a>
               
@@ -235,7 +235,7 @@
     </section><!-- End About Section -->
 
 
-    <!-- ======= Features Section ======= -->
+    <!-- ======= Features Section GASTOS ======= -->
     <section id="gastos" class="hero d-flex align-items-center">
       <div class="container">
         <header class="section-header">
@@ -294,6 +294,7 @@
       </div> 
     </section><!-- End Features Section -->
 
+    <!-- ======= Features Section INGRESOS ======= -->
     <section id="Ingresos" class="hero d-flex align-items-center">
       <div class="container">
         <header class="section-header">
@@ -339,7 +340,7 @@
     </section><!-- End Features Section -->
 
 
-    
+    <!-- ======= Features Section MODIFICAR GASTO ======= -->    
     <section id="Modificar" class="hero d-flex align-items-center">
       <div class="container">
         <header class="section-header">
@@ -2455,3 +2456,46 @@ section {
   color: #012970;
 }
 </style>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return{
+            form:{
+                name:'',
+                lastname:'',
+                email:'',
+                phone:'',
+                password:''
+//                image:''
+            }
+        }
+    },
+    methods: {
+        register(){
+
+                let formData = new URLSearchParams()
+                formData.append('name', this.form.name)
+                formData.append('lastname', this.form.lastname)
+                formData.append('email', this.form.email)
+                formData.append('phone', this.form.phone)
+                formData.append('password', this.form.password)
+//                formData.append('image', this.form.image)
+                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                    headers:{
+                        "Access-Control-Allow-Methods":"POST"
+                    }
+                })                
+                .then((response)=>{
+                    //console.log(response)
+                    localStorage.setItem('token',response.data.token);
+                    this.$router.push('/');
+                })
+                
+
+        }
+    }
+}
+</script>
