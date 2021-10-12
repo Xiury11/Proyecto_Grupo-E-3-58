@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 const authService = require('../services/auth.service');
 
-const Item = require('../models/item');
+
 const User = require('../models/user');
 const Auth = require('../middlewars/authentication');
 const Ingreso = require('../models/ingreso');
+const Gasto = require('../models/gasto');
+
 
 //routes
 //traer datos de la base de datos
-router.get('/',Auth, async (req,res)=>{
+/*router.get('/',Auth, async (req,res)=>{
     const items = await Item.find();
     res.send(items);
 })
@@ -26,7 +28,7 @@ router.get('/:id', async (req, res)=>{
     const item = await Item.findById(req.params.id);
     res.send(item);
 });
-
+*/
 //----------Auth routes
 
 //------------INGRESO A APLICACION WEB---------------------//
@@ -56,20 +58,20 @@ router.post('/register', async (req,res)=>{
 });
 
 //adicionar ingreso a un usuario
-router.post('/:id/ingreso', async (req, res)=>{
+router.post('/ingreso', async (req, res)=>{
     const ingreso = new Ingreso(req.body);
     await ingreso.save();
     res.send(ingreso);
 });
 
 //retorna todos los ingresos de cada usuario
-router.get('/:id/ingreso', async (req,res) =>{
+router.get('/ingreso', async (req,res) =>{
     const ingresos = await Ingreso.find();
     res.send(ingresos);
 });
 
 //adicionar gasto a un usuario
-router.post('/:id/gasto', async (req, res)=>{
+router.post('/gasto', async (req, res)=>{
     const gasto = new Gasto(req.body);
     await gasto.save();
     res.send(gasto);
