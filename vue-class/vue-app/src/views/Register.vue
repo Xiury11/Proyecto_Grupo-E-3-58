@@ -36,17 +36,17 @@
                   <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" v-model="form.phone" required>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="pass" id="password" placeholder="Contraseña" v-model="form.password" required>
+                  <input type="password" class="form-control" name="pass" id="password" placeholder="Contraseña" v-model="form.password" required>
                 </div>
                 <div class="col-md-6 ">
-                  <input type="text" class="form-control" name="pass" id="pass" placeholder="Confirmar contraseña" required>
+                  <input type="password" class="form-control" name="pass" id="pass" placeholder="Confirmar contraseña" required>
                 </div>
 
                 
             
               
                 <div class="col-md-6 "> 
-                <a href="/expenses" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
+                <a href="/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
                   <span>Crear cuenta</span>
                   
                 </a>
@@ -73,6 +73,45 @@
 
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return{
+            form:{
+                name:'',
+                lastname:'',
+                email:'',
+                phone:'',
+                password:''
+            }
+        }
+    },
+    methods: {
+        register(){
+                let formData = new URLSearchParams()
+                formData.append('name', this.form.name)
+                formData.append('lastname', this.form.lastname)
+                formData.append('email', this.form.email)
+                formData.append('phone', this.form.phone)
+                formData.append('password', this.form.password)
+                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                    headers:{
+                        "Access-Control-Allow-Methods":"POST"
+                    }
+                })                
+                .then((response)=>{
+                    console.log(response)
+                    //localStorage.setItem('token',response.data.token);
+                    this.$router.push("/");                    
+                })
+        }
+    }
+}
+</script>
+
 <style>
 
 #hero{
@@ -148,45 +187,3 @@
 </style>
 
 
-<script>
-import axios from 'axios'
-
-export default {
-    data() {
-        return{
-            form:{
-                name:'',
-                lastname:'',
-                email:'',
-                phone:'',
-                password:''
-//                image:''
-            }
-        }
-    },
-    methods: {
-        register(){
-
-                let formData = new URLSearchParams()
-                formData.append('name', this.form.name)
-                formData.append('lastname', this.form.lastname)
-                formData.append('email', this.form.email)
-                formData.append('phone', this.form.phone)
-                formData.append('password', this.form.password)
-//                formData.append('image', this.form.image)
-                axios.post('https://gastos1.herokuapp.com/register',formData,{
-                    headers:{
-                        "Access-Control-Allow-Methods":"POST"
-                    }
-                })                
-                .then((response)=>{
-                    //console.log(response)
-                    localStorage.setItem('token',response.data.token);
-                    this.$router.push('/');
-                })
-                
-
-        }
-    }
-}
-</script>
