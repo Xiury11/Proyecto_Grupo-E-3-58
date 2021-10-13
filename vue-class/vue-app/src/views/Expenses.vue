@@ -1,5 +1,20 @@
 <template>
     <div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          
+        
+          <li class="dropdown"><a href="#cuenta"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/ingresos">Ingresos</a></li>
+              <li><a href="/modificar">Modificar</a></li>
+              <li><a href="/">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
          <!-- ======= Features Section GASTOS ======= -->
     <section id="gastos" class="hero d-flex align-items-center">
       <div class="container">
@@ -60,3 +75,45 @@
     </section><!-- End Features Section -->
     </div>
 </template>
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return{
+            form:{
+                name:'',
+                lastname:'',
+                email:'',
+                phone:'',
+                password:''
+//                image:''
+            }
+        }
+    },
+    methods: {
+        register(){
+
+                let formData = new URLSearchParams()
+                formData.append('name', this.form.name)
+                formData.append('lastname', this.form.lastname)
+                formData.append('email', this.form.email)
+                formData.append('phone', this.form.phone)
+                formData.append('password', this.form.password)
+//                formData.append('image', this.form.image)
+                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                    headers:{
+                        "Access-Control-Allow-Methods":"POST"
+                    }
+                })                
+                .then((response)=>{
+                    //console.log(response)
+                    localStorage.setItem('token',response.data.token);
+                    this.$router.push('/');
+                })
+                
+
+        }
+    }
+}
+</script>

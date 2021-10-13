@@ -24,11 +24,11 @@
                 
                     <div class="col-lg-6 ">
                                     
-                    <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                    <a href="#" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                         <span>Reestablecer</span>
                     </a>
                                 
-                    <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                    <a href="/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                         <span>Salir</span>
                     </a>
 
@@ -44,3 +44,46 @@
         </section>
     </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return{
+            form:{
+                name:'',
+                lastname:'',
+                email:'',
+                phone:'',
+                password:''
+//                image:''
+            }
+        }
+    },
+    methods: {
+        register(){
+
+                let formData = new URLSearchParams()
+                formData.append('name', this.form.name)
+                formData.append('lastname', this.form.lastname)
+                formData.append('email', this.form.email)
+                formData.append('phone', this.form.phone)
+                formData.append('password', this.form.password)
+//                formData.append('image', this.form.image)
+                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                    headers:{
+                        "Access-Control-Allow-Methods":"POST"
+                    }
+                })                
+                .then((response)=>{
+                    //console.log(response)
+                    localStorage.setItem('token',response.data.token);
+                    this.$router.push('/');
+                })
+                
+
+        }
+    }
+}
+</script>

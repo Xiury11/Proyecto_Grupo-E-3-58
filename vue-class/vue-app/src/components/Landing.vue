@@ -34,15 +34,15 @@
             <div class="col-lg-6 ">
               <div class="reset-password">
                 <br>
-                <a href="#">   Olvidé mi Contraseña</a>
+                <a href="/olvido">   Olvidé mi Contraseña</a>
               </div>
               
-              <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+              <a href="/expenses" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Iniciar sesión</span>
                 
               </a>
-              <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Registrarse</span>
+              <a href="/registro" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span to="/registro">Registrarse</span>
               </a>
             </div>
            

@@ -2,21 +2,19 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>  -->
-    <Landing> 
-
-    </Landing> 
+    <router-view></router-view> 
   </div>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue';
-import Landing from './components/Landing.vue';
+//import Landing from './components/Landing.vue';
 
 export default {
   name: 'App',
   components: {
     //HelloWorld, 
-    Landing
+    //Landing
   }
 }
 </script>

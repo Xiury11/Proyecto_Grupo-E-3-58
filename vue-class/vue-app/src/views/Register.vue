@@ -1,5 +1,17 @@
 <template>
+
     <div>
+        <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <!-- <a href="index.html" class="logo d-flex align-items-center">
+        <img src="@/assets/img/logo.png" alt="">
+        <span>FlexStart</span>
+      </a> -->
+    </div>
+  </header><!-- End Header -->
+
          <!-- ======= Register Section  REGISTRO NUEVO USUARIO ======= -->
     <section id="register" class="hero d-flex align-items-center">
 
@@ -34,11 +46,11 @@
             
               
                 <div class="col-md-6 "> 
-                <a href="" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
+                <a href="/expenses" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
                   <span>Crear cuenta</span>
                   
                 </a>
-                <a href="" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <a href="/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>Salir</span>
                 </a>
               
@@ -55,9 +67,25 @@
       </div>
 
     </section><!-- End Register Section -->
-    </div>
+    
+ 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  </div>
 </template>
 <style>
+
+#hero{
+        background: url(../assets/img/hero-bg.png) top center no-repeat;
+    }
+    #password{
+        background: url(../assets/img/hero-bg.png) top center no-repeat;
+    }
+      .col-lg-5 {
+    flex: 0 0 auto;
+    width: 41.66666667%;
+  }
+  
     /*--------------------------------------------------------------
 # Register
 --------------------------------------------------------------*/
@@ -118,3 +146,47 @@
   margin: 0 8px;
 }
 </style>
+
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return{
+            form:{
+                name:'',
+                lastname:'',
+                email:'',
+                phone:'',
+                password:''
+//                image:''
+            }
+        }
+    },
+    methods: {
+        register(){
+
+                let formData = new URLSearchParams()
+                formData.append('name', this.form.name)
+                formData.append('lastname', this.form.lastname)
+                formData.append('email', this.form.email)
+                formData.append('phone', this.form.phone)
+                formData.append('password', this.form.password)
+//                formData.append('image', this.form.image)
+                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                    headers:{
+                        "Access-Control-Allow-Methods":"POST"
+                    }
+                })                
+                .then((response)=>{
+                    //console.log(response)
+                    localStorage.setItem('token',response.data.token);
+                    this.$router.push('/');
+                })
+                
+
+        }
+    }
+}
+</script>
