@@ -4,7 +4,7 @@ const authService = require('../services/auth.service');
 
 
 const User = require('../models/user');
-const Auth = require('../middlewars/authentication');
+//const Auth = require('../middlewars/authentication');
 const Ingreso = require('../models/ingreso');
 const Gasto = require('../models/gasto');
 
@@ -59,15 +59,10 @@ router.post('/register', async (req,res)=>{
 
 //adicionar ingreso a un usuario
 router.post('/ingreso', async (req, res)=>{
-    const ingreso = new Ingreso(req.body);
+    //const id_user = await User.findById(req.params._id);
+    const ingreso = new Ingreso(req.body._id);
     await ingreso.save();
     res.send(ingreso);
-});
-
-//retorna todos los ingresos de cada usuario
-router.get('/ingreso', async (req,res) =>{
-    const ingresos = await Ingreso.find();
-    res.send(ingresos);
 });
 
 //adicionar gasto a un usuario
@@ -76,6 +71,13 @@ router.post('/gasto', async (req, res)=>{
     await gasto.save();
     res.send(gasto);
 });
+
+//retorna todos los usuarios 
+router.get('/register',async (req,res) =>{
+    const user = await User.find();
+    res.send(user);
+});
+
 
 //exportar modulos
 module.exports = router;

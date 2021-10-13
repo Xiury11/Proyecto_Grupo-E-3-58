@@ -5,9 +5,9 @@ const User = require('./user');
 
 const ingresoSchema = new Schema({
     
-    valor_i: String,
-    descripcion_i: String,
-    clasificacion_i: {type: String,enum:["salario","arriendo","otro"]},
+    valor: String,
+    descripcion: String,
+    clasificacion: {type: String,enum:["Salario","Arriendo","Otro"]},
     
 })
 
