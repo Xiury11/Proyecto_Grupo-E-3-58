@@ -50,8 +50,10 @@ router.post('/login', async (req,res)=>{
 router.post('/register', async (req,res)=>{
     try {
         const user = new User(req.body);
-        const userData = await authService.register(user);
-        res.send(userData);
+        if(req.body.name && req.body.email && req.body.password){
+            const userData = await authService.register(user);
+            res.send(userData);
+        }
     } catch (error) {
         res.send(error)        
     }
@@ -60,7 +62,7 @@ router.post('/register', async (req,res)=>{
 //adicionar ingreso a un usuario
 router.post('/ingreso', async (req, res)=>{
     //const id_user = await User.findById(req.params._id);
-    const ingreso = new Ingreso(req.body._id);
+    const ingreso = new Ingreso(req.body);
     await ingreso.save();
     res.send(ingreso);
 });
