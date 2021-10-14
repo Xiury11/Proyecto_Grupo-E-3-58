@@ -16,7 +16,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
             <!-- ======= Features Section INGRESOS ======= -->
-        <section id="Ingresos" class="hero d-flex align-items-center">
+        <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
             <header class="section-header">
             <h1>Ingresos</h1>
@@ -83,7 +83,7 @@ export default {
                 formData.append('valor', this.form.valor)
                 formData.append('descripcion', this.form.descripcion)
                 formData.append('clasificacion', this.form.clasificacion)
-                axios.post('https://gastos1.herokuapp.com/ingreso',formData,{
+                axios.post('http://localhost:3000/ingreso',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }

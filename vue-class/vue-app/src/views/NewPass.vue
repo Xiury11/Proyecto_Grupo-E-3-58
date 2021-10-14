@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section id="new_password" class="hero d-flex align-items-center">
+        <section id="hero" class="hero d-flex align-items-center">
 
             
             <div class="container">

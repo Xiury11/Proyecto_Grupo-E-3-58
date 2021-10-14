@@ -16,7 +16,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
          <!-- ======= Features Section GASTOS ======= -->
-    <section id="gastos" class="hero d-flex align-items-center">
+    <section id="hero" class="hero d-flex align-items-center">
       <div class="container">
         <header class="section-header">
           <h1>Gastos</h1>
@@ -100,14 +100,14 @@ export default {
                 formData.append('descripcion', this.form.descripcion)
                 formData.append('tipo', this.form.tipo)
                 formData.append('fecha', this.form.fecha)
-                axios.post('https://gastos1.herokuapp.com/gasto',formData,{
+                axios.post('http://localhost:3000/gasto',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }
                 })                
                 .then((response)=>{
-                    //console.log(response);
-                    localStorage.setItem('token',response.data.token);
+                    console.log(response);
+                    //localStorage.setItem('token',response.data.token);
                     this.$router.push('/expenses');
                 })
         }
