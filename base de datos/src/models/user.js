@@ -7,7 +7,6 @@ const User = new Schema({
     email: {type:String, unique: true},
     phone: Number,
     password: String
-//    image: String
     
 });
 

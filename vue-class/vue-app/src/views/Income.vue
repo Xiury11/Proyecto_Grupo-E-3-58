@@ -37,20 +37,20 @@
                 </form>
                 <div class="container overflow-hidden">
                     <div class="col-md-6 ">
-                    <input type="number" name="ingreso" class="form-control" id="ingreso" placeholder="Valor del ingreso" required>
+                    <input type="number" name="valor" class="form-control" id="valor" placeholder="Valor del ingreso" v-model="form.valor" required>
                     </div>
                     <div class="col-md-6 ">
-                    <input type="text" name="desc_ingreso" class="form-control" id="desc_ingreso" placeholder="Descripción del ingreso" required>
+                    <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Descripción del ingreso" v-model="form.descripcion" required>
                     </div>
                     <div class="col-md-6 ">
-                    <select  id="clasificacion_ingreso">
+                    <select  id="clasificacion" v-model="form.clasificacion">
                         <option>Salario</option>
                         <option>Arriendo</option>
                         <option>Otro</option>
                     </select>
                     </div>
                     <div class="col-md-6 "> 
-                    <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                    <a href="/ingresos" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="ingreso">
                         <span>Agregar Ingreso</span>
                     </a>
                     </div>   
@@ -70,38 +70,30 @@ export default {
     data() {
         return{
             form:{
-                name:'',
-                lastname:'',
-                email:'',
-                phone:'',
-                password:''
-//                image:''
-            }
+                valor:'',
+                descripcion:'',
+                clasificacion:'',
+           }
         }
     },
     methods: {
-        register(){
+        ingreso(){
 
                 let formData = new URLSearchParams()
-                formData.append('name', this.form.name)
-                formData.append('lastname', this.form.lastname)
-                formData.append('email', this.form.email)
-                formData.append('phone', this.form.phone)
-                formData.append('password', this.form.password)
-//                formData.append('image', this.form.image)
-                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                formData.append('valor', this.form.valor)
+                formData.append('descripcion', this.form.descripcion)
+                formData.append('clasificacion', this.form.clasificacion)
+                axios.post('https://gastos1.herokuapp.com/ingreso',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }
                 })                
                 .then((response)=>{
-                    //console.log(response)
+                    //console.log(response);
                     localStorage.setItem('token',response.data.token);
-                    this.$router.push('/');
+                    this.$router.push('/ingresos');
                 })
-                
-
-        }
+        },
     }
 }
 </script>
