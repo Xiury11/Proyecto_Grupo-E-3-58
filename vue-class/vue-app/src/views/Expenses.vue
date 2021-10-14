@@ -1,7 +1,7 @@
 <template>
     <div>
-      <nav id="navbar" class="navbar justify-content-end">
-        <ul class = "dropdown-menu pull-right">
+      <nav id="navbar" class="navbar">
+        <ul>
           
         
           <li class="dropdown"><a href="#cuenta"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
@@ -100,14 +100,14 @@ export default {
                 formData.append('descripcion', this.form.descripcion)
                 formData.append('tipo', this.form.tipo)
                 formData.append('fecha', this.form.fecha)
-                axios.post('https://gastos1.herokuapp.com/gasto',formData,{
+                axios.post('http://localhost:3000/gasto',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }
                 })                
                 .then((response)=>{
-                    //console.log(response);
-                    localStorage.setItem('token',response.data.token);
+                    console.log(response);
+                    //localStorage.setItem('token',response.data.token);
                     this.$router.push('/expenses');
                 })
         }

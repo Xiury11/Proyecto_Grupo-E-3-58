@@ -46,7 +46,7 @@
             
               
                 <div class="col-md-6 "> 
-                <a href="/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
+                <a href="#" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" type="bitton" @click="register">
                   <span>Crear cuenta</span>
                   
                 </a>
@@ -97,7 +97,7 @@ export default {
                 formData.append('email', this.form.email)
                 formData.append('phone', this.form.phone)
                 formData.append('password', this.form.password)
-                axios.post('https://gastos1.herokuapp.com/register',formData,{
+                axios.post('http://localhost:3000/register',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }
@@ -105,7 +105,7 @@ export default {
                 .then((response)=>{
                     console.log(response)
                     //localStorage.setItem('token',response.data.token);
-                    this.$router.push("/");                    
+                    this.$router.push("/login");
                 })
         }
     }

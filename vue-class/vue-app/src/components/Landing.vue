@@ -22,22 +22,18 @@
           <form action="forms/notify.php" method="post" role="form" class="php-email-form">
            </form>
             <div class="container overflow-hidden">
-              <div class="col-md-6 form-group pr-md-1">
-                <input type="email" name="user" class="form-control" id="user" placeholder="User" required>
+<!--              <div class="col-md-6 form-group pr-md-1">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email" v-model="form.email" required>
               </div>
               <br>
               <div class="col-md-6 form-group pl-md-1">
-                <input type="text" class="form-control" name="email" id="email" placeholder="Password" required>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" v-model="form.password" required>
               </div>
-           
+-->           
             
             <div class="col-lg-6 ">
-              <div class="reset-password">
-                <br>
-                <a href="/olvido">   Olvidé mi Contraseña</a>
-              </div>
               
-              <a href="/expenses" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+              <a href="/login" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Iniciar sesión</span>
                 
               </a>
@@ -68,6 +64,7 @@
 
     </div>
 </template>
+
 
 <style scoped>
 
@@ -1967,46 +1964,3 @@ section {
   color: #012970;
 }
 </style>
-
-<script>
-import axios from 'axios'
-
-export default {
-    data() {
-        return{
-            form:{
-                name:'',
-                lastname:'',
-                email:'',
-                phone:'',
-                password:''
-//                image:''
-            }
-        }
-    },
-    methods: {
-        register(){
-
-                let formData = new URLSearchParams()
-                formData.append('name', this.form.name)
-                formData.append('lastname', this.form.lastname)
-                formData.append('email', this.form.email)
-                formData.append('phone', this.form.phone)
-                formData.append('password', this.form.password)
-//                formData.append('image', this.form.image)
-                axios.post('https://gastos1.herokuapp.com/register',formData,{
-                    headers:{
-                        "Access-Control-Allow-Methods":"POST"
-                    }
-                })                
-                .then((response)=>{
-                    //console.log(response)
-                    localStorage.setItem('token',response.data.token);
-                    this.$router.push('/');
-                })
-                
-
-        }
-    }
-}
-</script>

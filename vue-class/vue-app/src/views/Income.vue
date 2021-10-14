@@ -83,7 +83,7 @@ export default {
                 formData.append('valor', this.form.valor)
                 formData.append('descripcion', this.form.descripcion)
                 formData.append('clasificacion', this.form.clasificacion)
-                axios.post('https://gastos1.herokuapp.com/ingreso',formData,{
+                axios.post('http://localhost:3000/ingreso',formData,{
                     headers:{
                         "Access-Control-Allow-Methods":"POST"
                     }
