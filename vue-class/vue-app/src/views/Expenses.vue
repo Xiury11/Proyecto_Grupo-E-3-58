@@ -1,10 +1,10 @@
 <template>
     <div>
       <nav id="navbar" class="navbar justify-content-end">
-        <ul class = "dropdown-menu pull-right">
+        <ul class = "dropdown-menu pull-left">
           
         
-          <li class="dropdown"><a href="#cuenta"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/ingresos">Ingresos</a></li>
               <li><a href="/modificar">Modificar</a></li>

@@ -4,7 +4,7 @@
         <ul>
           
         
-          <li class="dropdown"><a href="#cuenta"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/ingresos">Ingresos</a></li>
               <li><a href="/expenses">Gastos</a></li>

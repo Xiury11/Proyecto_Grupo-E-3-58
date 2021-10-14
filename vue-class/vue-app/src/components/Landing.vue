@@ -27,7 +27,7 @@
               </div>
               <br>
               <div class="col-md-6 form-group pl-md-1">
-                <input type="text" class="form-control" name="email" id="email" placeholder="Password" required>
+                <input type="password" class="form-control" name="pass" id="password" placeholder="Password" required>
               </div>
            
             
