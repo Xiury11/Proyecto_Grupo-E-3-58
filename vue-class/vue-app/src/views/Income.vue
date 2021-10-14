@@ -26,7 +26,8 @@
 
             <div class="col-lg-6">
                 <h1>Datos personales </h1>
-                <h2>Nombre:</h2>
+                <h2>Nombre: </h2>
+                <td>Oscar</td>
                 <h2>Apellido:</h2>
                 <h2>Teléfono:</h2>
                 <h2>Presupuesto actual:</h2>

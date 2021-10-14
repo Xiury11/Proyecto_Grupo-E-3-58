@@ -59,6 +59,18 @@ router.post('/register', async (req,res)=>{
     }
 });
 
+//retorna todos los usuarios
+router.get('/register',async (req,res) =>{
+    const user = await User.find()
+    res.send(user);
+});
+
+//retorna el usuario 
+router.get('/register/:id',async (req,res) =>{
+    const user = await User.findById(req.params.id)
+    res.send(user);
+});
+
 //adicionar ingreso a un usuario
 router.post('/ingreso', async (req, res)=>{
     //const id_user = await User.findById(req.params._id);
@@ -74,10 +86,10 @@ router.post('/gasto', async (req, res)=>{
     res.send(gasto);
 });
 
-//retorna todos los usuarios 
-router.get('/register',async (req,res) =>{
-    const user = await User.find();
-    res.send(user);
+//retorna todos los gastos 
+router.get('/gasto',async (req,res) =>{
+    const gasto = await Gasto.find();
+    res.send(gasto);
 });
 
 
