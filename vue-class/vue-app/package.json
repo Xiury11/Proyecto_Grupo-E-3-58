@@ -13,15 +13,12 @@
     "bootstrap-vue": "~2.21.2",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
-    "vue": "^2.6.11",
-<<<<<<< HEAD
-    "vue-router": "^3.5.2",
     "mongoose": "6.0.5",
-    "morgan": "^1.10.0"
-=======
+    "morgan": "^1.10.0",
+    "node": "^16.10.0",
+    "vue": "^2.6.11",
     "vue-axios": "^3.3.7",
     "vue-router": "^3.5.2"
->>>>>>> 0d09903bd8bcc3ad8a6ebf38d7ff82b003b0d06d
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
