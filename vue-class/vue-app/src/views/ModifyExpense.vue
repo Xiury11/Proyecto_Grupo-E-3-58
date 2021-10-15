@@ -1,7 +1,7 @@
 <template>
     <div>
-      <nav id="navbar" class="navbar">
-        <ul>
+      <nav id="navbar" class="navbar justify-content-end">
+        <ul class = "dropdown-menu pull-left">
           
         
           <li class="dropdown"><a href=""><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
