@@ -7,6 +7,8 @@ const User = require('../models/user');
 //const Auth = require('../middlewars/authentication');
 const Ingreso = require('../models/ingreso');
 const Gasto = require('../models/gasto');
+const { errorMonitor } = require('events');
+
 
 
 //routes
@@ -91,6 +93,35 @@ router.get('/gasto',async (req,res) =>{
     const gasto = await Gasto.find();
     res.send(gasto);
 });
+
+//Eliminar registro de gasto de usuario
+router.delete('/gasto/:id',async (req,res) =>{
+    const _id=req.params.id;
+    try {
+        const gastoDB = await Gasto.findByIdAndDelete({_id});
+        if(!gastoDB){
+            return res.status(400).json({
+                mensaje:'Nose encontro el registro', err
+            })            
+        }
+        res.json(gastoDB)
+    } catch (error) {
+        res.send(error)        
+    }
+});
+
+//Modificar gasto de usuario
+router.put('/gasto/:id', async(req, res) => {
+    const _id = req.params.id;
+    const body = req.body;
+    try {
+        const gastoDB = await Gasto.findByIdAndUpdate(_id,body,{new:true});
+        res.json(gastoDB);
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 
 //exportar modulos

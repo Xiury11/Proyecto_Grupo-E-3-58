@@ -24,41 +24,61 @@
 
         <div class="row">
 
-          <div class="col-lg-6">
+<!--          <div class="col-lg-6">
             <h1>Datos personales </h1>
             <h2>Nombre:</h2>
             <h2>Apellido:</h2>
             <h2>Teléfono:</h2>
             <h2>Presupuesto actual:</h2>
-          </div>
+          </div>-->
 
-          <div class="col-lg-6 ">
+<!--          <div class="col-lg-6 "> -->
               <form action="forms/notify.php" method="post" role="form" class="php-email-form">
-                </form>
+              </form>
                 <div class="container overflow-hidden">
-                <div class="col-md-6 ">
-                  <select  id="gasto_mod">
-                    <option>Gasto1</option>
-                    <option>Gasto2</option>
-                    <option>Gasto3</option>
-                  </select>
-                </div>
-                <div class="col-md-6 ">
-                  <input type="number" name="valor_mod" class="form-control" id="valor_mod" placeholder="valor a modificar" required>
-                </div>
-                <div class="col-md-6 ">
-                  <input type="text" name="desc_mod" class="form-control" id="desc_mod" placeholder="Descripción" required>
-                </div>
-                
-                <div class="col-md-6 "> 
-                  <a href="#eliminar" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                    <span>Eliminar</span>
-                  </a>
-                  <a href="#modificar" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                    <span>Modificar</span>
-                  </a>
-                </div>   
-              </div>
+                <!--  <div class="col-md-6 ">
+                    <select  id="gasto_mod">
+                      <option>Gasto1</option>
+                      <option>Gasto2</option>
+                      <option>Gasto3</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 ">
+                    <input type="number" name="valor_mod" class="form-control" id="valor_mod" placeholder="valor a modificar" required>
+                  </div>
+                  <div class="col-md-6 ">
+                    <input type="text" name="desc_mod" class="form-control" id="desc_mod" placeholder="Descripción" required>
+                  </div>-->
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Clasificación</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(item, index) in gastos" :key="index">
+                        <th scope="row">{{item._id}}</th>
+                        <td>{{item.valor}}</td>
+                        <td>{{item.clasificacion}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.tipo}}</td>
+                        <td>{{item.fecha}}</td>
+                        <td>
+                          
+                          <button type="button" class="btn-danger mx-5" @click="eliminarGasto(item._id)">Eliminar</button>
+                          <button class="btn-warning mx-2" @click="modificarGasto(item._id)">Modificar</button>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <!--</div>-->
           </div>         
         </div> <!-- / row -->       
       </div> 
@@ -67,7 +87,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
     data() {
@@ -79,32 +99,40 @@ export default {
                 phone:'',
                 password:''
 //                image:''
-            }
+            },
+            gastos:[]
         }
     },
+
+    created(){
+      this.listargastos();
+      //this.eliminarNota();
+    },
+
     methods: {
-        register(){
+        
+        listargastos(){
+          this.axios.get('http://localhost:3000/gasto')
+          .then(res=>{
+            this.gastos=res.data;                
+          })
+          .catch(e=>{
+            console.log(e.response)
+          })
+        },
 
-                let formData = new URLSearchParams()
-                formData.append('name', this.form.name)
-                formData.append('lastname', this.form.lastname)
-                formData.append('email', this.form.email)
-                formData.append('phone', this.form.phone)
-                formData.append('password', this.form.password)
-//                formData.append('image', this.form.image)
-                axios.post('https://gastos1.herokuapp.com/register',formData,{
-                    headers:{
-                        "Access-Control-Allow-Methods":"POST"
-                    }
-                })                
-                .then((response)=>{
-                    //console.log(response)
-                    localStorage.setItem('token',response.data.token);
-                    this.$router.push('/');
-                })
-                
+        eliminarNota(id){
+          this.axios.delete(`/gasto/${id}`)
+          .then(res=>{
+            const index = this.gastos.findIndex(item=> item._id===res.data.id);
+            this.gastos.splice(index, 1)
 
-        }
+          })
+          .catch(e=>{
+            console.log(e.response)
+          })
+  
+        },
     }
 }
 </script>
