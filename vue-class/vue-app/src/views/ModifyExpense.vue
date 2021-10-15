@@ -121,8 +121,8 @@ export default {
           })
         },
 
-        eliminarNota(id){
-          this.axios.delete(`/gasto/${id}`)
+        eliminarGasto(id){
+          this.axios.delete(`http://localhost:3000/gasto/${id}`)
           .then(res=>{
             const index = this.gastos.findIndex(item=> item._id===res.data.id);
             this.gastos.splice(index, 1)
