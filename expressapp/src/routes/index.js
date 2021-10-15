@@ -81,6 +81,12 @@ router.post('/ingreso', async (req, res)=>{
     res.send(ingreso);
 });
 
+//retorna todos los ingresos 
+router.get('/ingreso',async (req,res) =>{
+    const ingreso = await Ingreso.find();
+    res.send(ingreso);
+});
+
 //adicionar gasto a un usuario
 router.post('/gasto', async (req, res)=>{
     const gasto = new Gasto(req.body);

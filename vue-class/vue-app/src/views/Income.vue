@@ -25,12 +25,26 @@
             <div class="row">
 
             <div class="col-lg-6">
-                <h1>Datos personales </h1>
-                <h2>Nombre: </h2>
-                <td>Oscar</td>
-                <h2>Apellido:</h2>
-                <h2>Teléfono:</h2>
-                <h2>Presupuesto actual:</h2>
+                <h1>Ultimos Ingresos </h1>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <!--<th scope="col">#</th>-->
+                  <th scope="col">Valor</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Clasificación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in ingresos" :key="index">
+                  <!--<th scope="row">{{item._id}}</th>-->
+                  <td>{{item.valor}}</td>
+                  <td>{{item.descripcion}}</td>
+                  <td>{{item.clasificacion}}</td>                  
+                </tr>
+              </tbody>
+            </table>
+
             </div>
 
             <div class="col-lg-6 ">
@@ -74,9 +88,15 @@ export default {
                 valor:'',
                 descripcion:'',
                 clasificacion:'',
-           }
-        }
+           },
+           ingresos:[]
+        }        
     },
+
+    created(){
+        this.listaringresos();
+    },
+
     methods: {
         ingreso(){
 
@@ -95,6 +115,16 @@ export default {
                     this.$router.push('/ingresos');
                 })
         },
+
+        listaringresos(){
+          this.axios.get('http://localhost:3000/ingreso')
+          .then(res=>{
+            this.ingresos=res.data;                
+          })
+          .catch(e=>{
+            console.log(e.response)
+          })
+        }
     }
 }
 </script>
